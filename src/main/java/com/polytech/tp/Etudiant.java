@@ -1,6 +1,6 @@
 package com.polytech.tp;
 
-public class Etudiant {
+public class Etudiant implements Observer {
     private String nom;
 
     public Etudiant(String nom) {

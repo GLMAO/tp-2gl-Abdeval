@@ -1,6 +1,6 @@
 package com.polytech.tp;
 
-public class Responsable {
+public class Responsable implements Observer {
     private String nom;
 
     public Responsable(String nom) {
