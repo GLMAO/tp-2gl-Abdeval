@@ -13,18 +13,38 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: Tp Test
-      id: tp-test
+    - name: test exo 1
+      id: test-exo-1
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: Tp Test
-        setup-command: mvn compile
-        command: mvn -B test
+        test-name: test exo 1
+        setup-command: mvn compile test-compile
+        command: mvn test -Dtest=TpTests#testBuilderConstruction
         timeout: 10
-        max-score: 15
+        max-score: 5
+    - name: test exo 2
+      id: test-exo-2
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: test exo 2
+        setup-command: mvn compile test-compile
+        command: mvn test -Dtest=TpTests#testBuilderConstruction
+        timeout: 10
+        max-score: 5
+    - name: test exo 3
+      id: test-exo-3
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: test exo 3
+        setup-command: mvn compile test-compile
+        command: mvn test -Dtest=TpTests#testBuilderConstruction
+        timeout: 10
+        max-score: 5
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
-        TP-TEST_RESULTS: "${{steps.tp-test.outputs.result}}"
+        TEST-EXO-1_RESULTS: "${{steps.test-exo-1.outputs.result}}"
+        TEST-EXO-2_RESULTS: "${{steps.test-exo-2.outputs.result}}"
+        TEST-EXO-3_RESULTS: "${{steps.test-exo-3.outputs.result}}"
       with:
-        runners: tp-test
+        runners: test-exo-1,test-exo-2,test-exo-3
